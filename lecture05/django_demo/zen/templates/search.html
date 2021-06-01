@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<p>{{ query_string }}</p>
+{% for i, q in result %}
+<p><a href="{% url 'quote' i %}">{{ q }}</a></p>
+{% empty %}
+No result for query: {{ query_string}}
+{% endfor %}
+
+<form action="" method="POST">
+  <input type="text" name="query_string">
+  <input type="submit" value="Search">
+</form>
+{% endblock %}
