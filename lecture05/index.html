@@ -1,9 +1,0 @@
-{% extends "layout.html" %}
-
-{% block content %}
-  {% for quote in quotes %}
-  <p><a href="{% url 'quote' forloop.counter0 %}">{{ quote }}</a></p>
-  {% empty %}
-  <h2>No quotes for today</h2>
-  {% endfor %}
-{% endblock %}
