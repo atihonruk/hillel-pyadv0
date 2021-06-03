@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Index</title>
+</head>
+<body>
+  <div>
+    {% for name, count in reg_counts %}
+    <p><a href="{% url 'index' %}?region={{name}}">{{ name }}</a> ({{ count }})</p>
+    {% endfor %}    
+  </div>
+  <div>
+    <h1>{{ region }}</h1>
+    {% for id, name in reg_data %}
+    <p><a href="{% url 'entity-by-id' id %}">{{ name }}</a></p>
+    {% endfor %}
+  </div>
+</body>
+</html>
