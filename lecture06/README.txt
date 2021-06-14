@@ -13,6 +13,7 @@ https://data.gov.ua/dataset/3fcbfe9e-7cec-4f69-b9ca-be49daae2369
 
 description
 execute()
+executemany()
 fetchone()
 fetchall()
 
