@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <label for="region">Region:</label>
+
+    <select id="region">
+      {% for region in regions %}
+      <option value="{{ region }}">{{ region }}</option>
+      {% endfor %}
+    </select>
+  </body>
+</html>
