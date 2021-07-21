@@ -3,8 +3,10 @@ import csv
 from os.path import splitext, basename
 from uuid import UUID
 from collections import defaultdict
+from datetime import datetime
 from math import ceil
 
+DATE_INPUT_FORMATS = ['%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y', '%b %d %Y', '%b %d, %Y', '%d %b %Y', '%d %b, %Y', '%B %d %Y', '%B %d, %Y', '%d %B %Y', '%d %B, %Y']
 
 def class_decl(name):
     name, _ = splitext(basename(name))
@@ -23,6 +25,20 @@ def simple_field(type_, field):
 def char_field(data):
     max_length = ceil(max(map(len, data)) * 1.25 / 10) * 10
     return f'CharField(max_length={max_length})'
+
+
+def date_field(data):
+    it = iter(data)
+    first = next(it)
+    for fmt in DATE_INPUT_FORMATS:
+        try:
+            datetime.strptime(first, fmt)
+            break
+        except:
+            pass
+    for val in it:
+        datetime.strptime(val, fmt)
+    return 'DateField()'
 
 
 def gen_field(name, data):
