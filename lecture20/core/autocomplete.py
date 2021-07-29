@@ -27,6 +27,7 @@ def make_completion_key(cls, field_name):
 
 
 def make_field_completions(obj, field_name):
+    """ Make completions for the given field of the single instance. """
     values = set()
     val = obj.__dict__[field_name]
     if val:
@@ -39,8 +40,7 @@ def make_field_completions(obj, field_name):
         
 
 def model_completions(cls, field_name):
-    """ Make all possible completions of the model data """
-
+    """ Make all possible completions for all the model instances. """
     key = make_completion_key(cls, field_name)
     completions = []
     for obj in cls.objects.all():  # Book.objects.all()
