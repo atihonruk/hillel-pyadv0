@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head><title>{{ object.name }}</title></head>
+  <body>
+    <h1>{{ object.name }}</h1>
+    <p><a href="mailto:{{ object.email }}">{{ object.name }}</a></p>
+    <ul>
+    {% for book in object_list %}
+    <li>{{ book.title }}</li>
+    {% endfor %}
+    </ul>
+  </body>
+</html>
