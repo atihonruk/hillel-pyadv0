@@ -1,0 +1,15 @@
+import os
+from celery import Celery
+
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tasker.settings')
+
+
+app = Celery('tasker')
+
+
+# from django.conf import settings
+# CELERY_
+
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()
