@@ -21,21 +21,21 @@ def rate_limit(get_response):
         con = get_redis_connection()
         minute = datetime.now().minute
         key = f'rate_limit:{remote_ip}:{minute}'
-        print('Rate-limit middleware', key)
+
         # MULTI
         # INCR key
         # EXPIRE key 59
         # EXEC
-        hits = con.incr(key)
-        con.expire(key, 59)
-        # with con.pipeline() as pipe:
-        #     pipe.multi()
-        #     hits = pipe.incr(key)
-        #     pipe.expire(key, 59)
-        #     pipe.execute()
-        
+
+        with con.pipeline() as pipe:
+            pipe.multi()
+            pipe.incr(key)
+            pipe.expire(key, 59)
+            hits, _ = pipe.execute()
+
         if hits > RATE_LIMIT:
-            return HttpResponse('Rate exceeded', status=429)
+            # https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+            return HttpResponse('Too many requests', status=429)
         response = get_response(request)
         return response
 
