@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script type="text/javascript" src="/static/js/autcomplete.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <form>
+        <input type="text" id="book_search" name="book search" placeholder="Enter the name of the book">
+        <input type="submit">
+      </form>
+    </div>
+    <script type="text/javascript">autocomplete(document.getElementById("book_search"))</script> 
+  </body>
+</html>
